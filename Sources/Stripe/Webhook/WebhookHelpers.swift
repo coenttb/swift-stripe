@@ -35,10 +35,10 @@ extension Stripe.Events.Event.Typed {
     }
     
     /// Generates a unique event ID for idempotency tracking
-    public var eventId: String {
+    public var eventId: Stripe.Events.Event.ID {
         switch self {
         case let .unhandled(event):
-            return event.id.rawValue
+            return event.id
         default:
             // For typed events, generate a UUID-based ID
             return "evt_\(UUID().uuidString)"

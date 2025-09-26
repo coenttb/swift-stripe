@@ -75,8 +75,7 @@ extension Stripe.Events.Event {
                 throw StripeRoutingError.parseError(error)
             }
             
-            // Log the received event
-            Swift.print("📮 Received Stripe webhook: \(event.type?.rawValue ?? "unknown") - \(event.id)")
+            // Event received (logging handled by webhook processor)
             
             // Note: We don't consume the body from input as other middleware might need it
             
@@ -97,30 +96,30 @@ extension Stripe.Events.Event {
 
 // MARK: - Event.Typed Router
 
-extension Stripe.Events.Event.Typed {
-    /// Router for parsing typed Stripe webhook events from request body
-    public struct Router: ParserPrinter, Sendable {
-        public init() {}
-        
-        public func parse(_ input: inout URLRequestData) throws -> Stripe.Events.Event.Typed {
-            // First parse as raw Event using the Event router
-            let eventRouter = Stripe.Events.Event.Router()
-            let event = try eventRouter.parse(&input)
-            
-            // Convert to Event.Typed (now always succeeds with unhandled case)
-            let typedEvent = Stripe.Events.Event.Typed.init(from: event)
-            
-            return typedEvent
-        }
-        
-        public func print(_ output: Stripe.Events.Event.Typed, into input: inout URLRequestData) throws {
-            // Event.Typed is Codable, so we can encode it directly
-            let encoder = JSONEncoder()
-            encoder.keyEncodingStrategy = .convertToSnakeCase
-            encoder.dateEncodingStrategy = .secondsSince1970
-            
-            let data = try encoder.encode(output)
-            input.body = data
-        }
-    }
-}
+//extension Stripe.Events.Event.Typed {
+//    /// Router for parsing typed Stripe webhook events from request body
+//    public struct Router: ParserPrinter, Sendable {
+//        public init() {}
+//        
+//        public func parse(_ input: inout URLRequestData) throws -> Stripe.Events.Event.Typed {
+//            // First parse as raw Event using the Event router
+//            let eventRouter = Stripe.Events.Event.Router()
+//            let event = try eventRouter.parse(&input)
+//            
+//            // Convert to Event.Typed (now always succeeds with unhandled case)
+//            let typedEvent = Stripe.Events.Event.Typed.init(from: event)
+//            
+//            return typedEvent
+//        }
+//        
+//        public func print(_ output: Stripe.Events.Event.Typed, into input: inout URLRequestData) throws {
+//            // Event.Typed is Codable, so we can encode it directly
+//            let encoder = JSONEncoder()
+//            encoder.keyEncodingStrategy = .convertToSnakeCase
+//            encoder.dateEncodingStrategy = .secondsSince1970
+//            
+//            let data = try encoder.encode(output)
+//            input.body = data
+//        }
+//    }
+//}

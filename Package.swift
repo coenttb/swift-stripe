@@ -967,3 +967,20 @@ let package = Package(
     ],
     swiftLanguageModes: [.v6]
 )
+
+let swiftSettings: [SwiftSetting] = [
+    .enableUpcomingFeature("MemberImportVisibility"),
+    .enableUpcomingFeature("StrictUnsafe"),
+    .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+    .unsafeFlags(["-warnings-as-errors"]),
+    // .unsafeFlags([
+    //   "-Xfrontend",
+    //   "-warn-long-function-bodies=50",
+    //   "-Xfrontend",
+    //   "-warn-long-expression-type-checking=50",
+    // ])
+]
+
+for index in package.targets.indices {
+    package.targets[index].swiftSettings = (package.targets[index].swiftSettings ?? []) + swiftSettings
+}
