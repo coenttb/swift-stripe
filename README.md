@@ -1,8 +1,7 @@
 # swift-stripe
 
-[![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
-[![License](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-0.1.0-green.svg)](https://github.com/coenttb/swift-stripe/releases)
+[![CI](https://github.com/coenttb/swift-stripe/workflows/CI/badge.svg)](https://github.com/coenttb/swift-stripe/actions/workflows/ci.yml)
+![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
 A complete, production-ready Stripe API client for Swift server applications.
 
