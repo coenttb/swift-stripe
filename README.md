@@ -9,13 +9,13 @@ A complete, production-ready Stripe API client for Swift server applications.
 
 `swift-stripe` provides a high-level, dependency-injected interface to Stripe's API with:
 
-- 🎯 **Complete API Coverage**: 48 modules covering payments, billing, and more
-- 🔌 **Clean Architecture**: Simple re-export design for ease of use
-- 🧪 **Fully Testable**: Mock implementations for all operations
-- 📊 **Production Ready**: Used in production at coenttb.com
-- ⚡ **High Performance**: Async/await with efficient connection pooling
-- 🔐 **Secure**: API key management with environment variables
-- 🚀 **Zero Configuration**: Works out of the box with sensible defaults
+- **Complete API Coverage**: 48 modules covering payments, billing, and more
+- **Clean Architecture**: Simple re-export design for ease of use
+- **Fully Testable**: Mock implementations for all operations
+- **Production Ready**: Used in production at coenttb.com
+- **High Performance**: Async/await with efficient connection pooling
+- **Secure**: API key management with environment variables
+- **Zero Configuration**: Works out of the box with sensible defaults
 
 ## Installation
 
