@@ -26,7 +26,7 @@
 //    @Dependency(Stripe.PaymentLinks.self) var client
 //    @Dependency(Stripe.Products.Products.self) var products
 //    @Dependency(Stripe.Products.Prices.self) var prices
-//    
+//
 //    @Test("Should successfully create a payment link")
 //    func testCreatePaymentLink() async throws {
 //        // Create test product and price
@@ -36,7 +36,7 @@
 //                description: "Test product description"
 //            )
 //        )
-//        
+//
 //        let price = try await prices.client.create(
 //            .init(
 //                currency: .usd,
@@ -64,21 +64,21 @@
 //        #expect(!(response.livemode == true))
 //        #expect(response.active == true)
 //        #expect(response.url!.starts(with: "https://"))
-//        
+//
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
 //    @Test("Should successfully retrieve a payment link")
 //    func testRetrievePaymentLink() async throws {
-//        
-//        
+//
+//
 //        // Create test product and price
 //        let product = try await products.client.create(
 //            .init(
 //                name: "Test Product Retrieve"
 //            )
 //        )
-//        
+//
 //        let price = try await prices.client.create(
 //            .init(
 //                currency: .usd,
@@ -86,7 +86,7 @@
 //                unitAmount: 1000
 //            )
 //        )
-//        
+//
 //        // Create a payment link
 //        let created = try await client.client.create(
 //            .init(
@@ -95,27 +95,27 @@
 //                ]
 //            )
 //        )
-//        
+//
 //        let retrieved = try await client.client.retrieve(created.id)
-//        
+//
 //        #expect(retrieved.id == created.id)
 //        #expect(retrieved.url == created.url)
 //        #expect(retrieved.active == created.active)
 //        #expect(!(retrieved.livemode == true))
-//        
+//
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
 //    @Test("Should successfully update a payment link")
 //    func testUpdatePaymentLink() async throws {
-//        
+//
 //        // Create test product and price
 //        let product = try await products.client.create(
 //            .init(
 //                name: "Test Product Update"
 //            )
 //        )
-//        
+//
 //        let price = try await prices.client.create(
 //            .init(
 //                currency: .usd,
@@ -123,7 +123,7 @@
 //                unitAmount: 1000
 //            )
 //        )
-//        
+//
 //        // Create a payment link
 //        let created = try await client.client.create(
 //            .init(
@@ -133,7 +133,7 @@
 //                metadata: ["original": "true"]
 //            )
 //        )
-//        
+//
 //        let updated = try await client.client.update(
 //            created.id,
 //            .init(
@@ -145,27 +145,27 @@
 //                metadata: ["updated": "true"]
 //            )
 //        )
-//        
+//
 //        #expect(updated.id == created.id)
 //        #expect(updated.active == false)
 //        #expect(updated.metadata?["updated"] == "true")
 //        if case .hostedConfirmation = updated.afterCompletion?.type {
 //            #expect(updated.afterCompletion?.hostedConfirmation?.message == "Thank you!")
 //        }
-//        
+//
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
 //    @Test("Should successfully list payment links")
 //    func testListPaymentLinks() async throws {
-//        
+//
 //        // Create test product and prices
 //        let product = try await products.client.create(
 //            .init(
 //                name: "Test Product List"
 //            )
 //        )
-//        
+//
 //        // Create multiple prices
 //        var createdPrices: [Stripe.Products.Price] = []
 //        for i in 1...2 {
@@ -179,10 +179,10 @@
 //            )
 //            createdPrices.append(price)
 //        }
-//        
+//
 //        // Unique metadata for this test
 //        let uniqueTestId = UUID().uuidString
-//        
+//
 //        // Create payment links
 //        for (index, price) in createdPrices.enumerated() {
 //            _ = try await client.client.create(
@@ -192,29 +192,29 @@
 //                )
 //            )
 //        }
-//        
+//
 //        // List payment links
 //        let response = try await client.client.list(.init(limit: 10))
-//        
+//
 //        #expect(response.object == "list")
 //        #expect((response.data?.count ?? 0) >= 2)
 //        if let data = response.data, !data.isEmpty {
 //            #expect(data[0].object == "payment_link")
 //        }
-//        
+//
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
 //    @Test("Should successfully retrieve line items")
 //    func testListLineItems() async throws {
-//        
+//
 //        // Create test product and prices
 //        let product = try await products.client.create(
 //            .init(
 //                name: "Test Product Line Items"
 //            )
 //        )
-//        
+//
 //        let price1 = try await prices.client.create(
 //            .init(
 //                currency: .usd,
@@ -223,7 +223,7 @@
 //                unitAmount: 1000
 //            )
 //        )
-//        
+//
 //        let price2 = try await prices.client.create(
 //            .init(
 //                currency: .usd,
@@ -232,7 +232,7 @@
 //                unitAmount: 2000
 //            )
 //        )
-//        
+//
 //        // Create payment link with multiple line items
 //        let created = try await client.client.create(
 //            .init(
@@ -242,10 +242,10 @@
 //                ]
 //            )
 //        )
-//        
+//
 //        // Get line items
 //        let lineItems = try await client.client.lineItems(created.id, .init(limit: 10))
-//        
+//
 //        #expect(lineItems.object == "list")
 //        #expect(lineItems.data?.isEmpty == false)
 //        if let data = lineItems.data {
@@ -253,20 +253,20 @@
 //            #expect(data[0].object == "item")
 //        }
 //        #expect(lineItems.url?.contains(created.id) == true)
-//        
+//
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }
 //    @Test("Should handle payment link workflow")
 //    func testPaymentLinkWorkflow() async throws {
-//        
+//
 //        // Create test product and price
 //        let product = try await products.client.create(
 //            .init(
 //                name: "Test Product Workflow"
 //            )
 //        )
-//        
+//
 //        let price = try await prices.client.create(
 //            .init(
 //                currency: .usd,
@@ -274,7 +274,7 @@
 //                unitAmount: 2000
 //            )
 //        )
-//        
+//
 //        // 1. Create a payment link
 //        let created = try await client.client.create(
 //            .init(
@@ -293,7 +293,7 @@
 //        )
 //        #expect(created.active == true)
 //        #expect(created.metadata?["workflow"] == "test")
-//        
+//
 //        // 2. Update the payment link
 //        let updated = try await client.client.update(
 //            created.id,
@@ -306,11 +306,11 @@
 //            )
 //        )
 //        #expect(updated.metadata?["workflow"] == "updated")
-//        
+//
 //        // 3. Get line items
 //        let lineItems = try await client.client.lineItems(updated.id, .init())
 //        #expect(lineItems.data?.isEmpty == false)
-//        
+//
 //        // 4. Deactivate the payment link
 //        let deactivated = try await client.client.update(
 //            updated.id,
@@ -321,7 +321,7 @@
 //        )
 //        #expect(deactivated.active == false)
 //        #expect(deactivated.metadata?["status"] == "completed")
-//        
+//
 //        // Cleanup
 //        _ = try await products.client.update(product.id, .init(active: false))
 //    }

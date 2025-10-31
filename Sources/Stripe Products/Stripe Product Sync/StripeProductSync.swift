@@ -20,7 +20,7 @@
 //    public let currency: Stripe.Products.Price.Currency
 //    public let recurring: Stripe.Products.Price.Recurring?
 //    public let metadata: [String: String]?
-//    
+//
 //    /// Create a one-time price
 //    public init(
 //        amount: Int,
@@ -32,7 +32,7 @@
 //        self.recurring = nil
 //        self.metadata = metadata
 //    }
-//    
+//
 //    /// Create a recurring price
 //    public init(
 //        amount: Int,
@@ -51,26 +51,26 @@
 //public struct StripeProductSync {
 //    @Dependency(Stripe_Products.Stripe.Products.self) var products
 //    @Dependency(Stripe_Products.Stripe.Products.Prices.self) var prices
-//    
+//
 //    public init() {}
-//    
+//
 //    /// Sync products with Stripe, creating or updating as needed
 //    public func sync<Product: StripeProductDefinition>(
 //        _ productDefinitions: [Product]
 //    ) async throws {
 //        print("🔄 Starting Stripe product sync...")
-//        
+//
 //        // Get existing products from Stripe
 //        let existingProducts = try await products.client.products.list(
 //            .init(limit: 100)
 //        )
-//        
+//
 //        for definition in productDefinitions {
 //            // Check if product exists
 //            let existingProduct = existingProducts.data.first { product in
 //                product.metadata?["app_product_id"] == definition.id
 //            }
-//            
+//
 //            // Create or get the Stripe product
 //            let stripeProduct: Stripe.Products.Product
 //            if let existing = existingProduct {
@@ -86,7 +86,7 @@
 //                )
 //                print("✅ Created product: \(definition.name)")
 //            }
-//            
+//
 //            // Sync prices for this product
 //            try await syncPrices(
 //                for: stripeProduct,
@@ -94,10 +94,10 @@
 //                productId: definition.id
 //            )
 //        }
-//        
+//
 //        print("✅ Product sync complete!")
 //    }
-//    
+//
 //    private func syncPrices(
 //        for product: Stripe.Products.Product,
 //        definitions: [PriceDefinition],
@@ -107,7 +107,7 @@
 //        let existingPrices = try await prices.client.list(
 //            .init(limit: 100, product: product.id)
 //        )
-//        
+//
 //        for definition in definitions {
 //            // Check if price already exists
 //            let existingPrice = existingPrices.data.first { price in
@@ -116,16 +116,16 @@
 //                price.recurring?.interval == definition.recurring?.interval &&
 //                price.active == true
 //            }
-//            
+//
 //            if existingPrice == nil {
 //                // Create the price
 //                var metadata = definition.metadata ?? [:]
 //                metadata["app_product_id"] = productId
-//                
+//
 //                if let recurring = definition.recurring {
 //                    metadata["interval"] = recurring.interval.rawValue
 //                }
-//                
+//
 //                let price = try await prices.client.create(
 //                    .init(
 //                        currency: definition.currency,
@@ -135,9 +135,9 @@
 //                        unitAmount: definition.amount
 //                    )
 //                )
-//                
-//                let priceType = definition.recurring != nil ? 
-//                    "recurring (\(definition.recurring!.interval.rawValue))" : 
+//
+//                let priceType = definition.recurring != nil ?
+//                    "recurring (\(definition.recurring!.interval.rawValue))" :
 //                    "one-time"
 //                print("  ✅ Created \(priceType) price: \(price.id)")
 //            }

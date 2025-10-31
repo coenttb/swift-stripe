@@ -4,9 +4,10 @@
 //
 
 import Testing
+
 @testable import Stripe_Web_Elements
 
 @Test func testCurrencySelectorElementPlaceholder() {
-    // Placeholder test for Currency Selector Element
-    #expect(true)
+  // Placeholder test for Currency Selector Element
+  #expect(true)
 }

@@ -2,10 +2,10 @@
 // Provides a reusable webhook handler with signature verification
 // and event parsing for Stripe webhooks.
 
-import ServerFoundation
-import Foundation
-import Stripe_Events_Types
 import Dependencies
+import Foundation
+import ServerFoundation
+import Stripe_Events_Types
 
 //extension Stripe {
 //    /// Handles incoming Stripe webhook events with signature verification
@@ -19,21 +19,21 @@ import Dependencies
 //    ) async throws -> Response {
 //        // Get webhook secret from environment
 //        @Dependency(\.envVars.stripe.webhookSecret) var webhookSecret
-//        
+//
 //        guard let webhookSecret else {
 //            throw Abort(.internalServerError, reason: "Missing webhook secret")
 //        }
-//        
+//
 //        // Get raw body for signature verification
 //        guard let body = request.body.data else {
 //            throw Abort(.badRequest, reason: "Missing request body")
 //        }
-//        
+//
 //        // Get Stripe signature header
 //        guard let signature = request.headers["Stripe-Signature"].first else {
 //            throw Abort(.badRequest, reason: "Missing Stripe-Signature header")
 //        }
-//        
+//
 //        // Verify webhook signature
 //        do {
 //            try StripeWebhookSignature.verify(
@@ -46,12 +46,12 @@ import Dependencies
 //            print("⚠️ Webhook signature verification failed: \(error)")
 //            throw Abort(.unauthorized, reason: "Invalid webhook signature")
 //        }
-//        
+//
 //        // Parse the webhook event
 //        let decoder = JSONDecoder()
 //        decoder.keyDecodingStrategy = .convertFromSnakeCase
 //        decoder.dateDecodingStrategy = .secondsSince1970
-//        
+//
 //        let event: Stripe.Events.Event
 //        do {
 //            event = try decoder.decode(Stripe.Events.Event.self, from: Data(buffer: body))
@@ -59,17 +59,17 @@ import Dependencies
 //            print("❌ Failed to parse webhook event: \(error)")
 //            throw Abort(.badRequest, reason: "Invalid webhook payload")
 //        }
-//        
+//
 //        // Log the received event
 //        print("📮 Received Stripe webhook: \(event.type?.rawValue ?? "unknown") - \(event.id)")
-//        
+//
 //        // Call the user's handler
 //        try await handler(event)
-//        
+//
 //        // Return success response to acknowledge receipt
 //        return Response(status: .ok, body: .init(string: "Webhook received"))
 //    }
-//    
+//
 //    /// Handles incoming Stripe webhook events with automatic Event.Typed conversion
 //    /// - Parameters:
 //    ///   - request: The incoming webhook request from Stripe
@@ -85,7 +85,7 @@ import Dependencies
 //            try await handler(typedEvent)
 //        }
 //    }
-//    
+//
 ////    /// Handles incoming Stripe webhook events with Event.Typed conversion and custom unhandled callback
 ////    /// - Parameters:
 ////    ///   - request: The incoming webhook request from Stripe
@@ -106,7 +106,7 @@ import Dependencies
 ////                }
 ////                return
 ////            }
-////            
+////
 ////            try await handler(typedEvent)
 ////        }
 ////    }
