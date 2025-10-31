@@ -253,9 +253,18 @@ If migrating from vapor-community/stripe-kit:
 
 ## Related Packages
 
-- [swift-stripe-types](https://github.com/coenttb/swift-stripe-types): Core types (Apache 2.0)
-- [swift-stripe-live](https://github.com/coenttb/swift-stripe-live): Live implementations
-- [coenttb-com-server](https://github.com/coenttb/coenttb-com-server): Production example
+### Dependencies
+
+- [swift-authenticating](https://github.com/coenttb/swift-authenticating): A Swift package for type-safe HTTP authentication with URL routing integration.
+- [swift-html](https://github.com/coenttb/swift-html): The Swift library for domain-accurate and type-safe HTML & CSS.
+- [swift-server-foundation](https://github.com/coenttb/swift-server-foundation): A Swift package with tools to simplify server development.
+- [swift-stripe-live](https://github.com/coenttb/swift-stripe-live): A Swift package with live implementations for the Stripe API.
+- [swift-stripe-types](https://github.com/coenttb/swift-stripe-types): A Swift package with foundational types for Stripe.
+
+### Third-Party Dependencies
+
+- [pointfreeco/swift-dependencies](https://github.com/pointfreeco/swift-dependencies): A dependency management library for controlling dependencies in Swift.
+- [pointfreeco/swift-tagged](https://github.com/pointfreeco/swift-tagged): A wrapper type for safer, expressive code.
 
 ## Requirements
 
