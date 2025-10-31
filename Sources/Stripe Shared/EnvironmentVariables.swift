@@ -11,10 +11,17 @@ import Foundation
 extension EnvVars {
   package static var development: Self {
     @Dependency(\.projectRoot) var projectRoot
-    return try! .live(
-      environmentConfiguration: .projectRoot(projectRoot, environment: "development"),
-      requiredKeys: []
-    )
+    // Try to load from .env file if it exists, otherwise return empty env vars
+    // This allows tests to run in CI without requiring a .env file
+    do {
+      return try .live(
+        environmentConfiguration: .projectRoot(projectRoot, environment: "development"),
+        requiredKeys: []
+      )
+    } catch {
+      // In CI or environments without .env files, return empty environment variables
+      return .init([:])
+    }
   }
 }
 
