@@ -210,6 +210,30 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-crypto.git", "3.0.0"..<"5.0.0")
     ],
     targets: [
+        // MARK: - Unreferenced Sources/ directories, deliberately retained
+        //
+        // Two directories under Sources/ are claimed by no target and remain
+        // unreferenced pending their reviewed semantic routing. Both are
+        // referentially dangling — neither can compile as written:
+        //
+        //   Stripe Checkout Sessions — re-exports Stripe_Checkout_Sessions_Live,
+        //     which does not exist. swift-stripe-live vends 41 products and its
+        //     only Checkout product is Stripe Checkout Live. Same coarse-vs-fine
+        //     decomposition mismatch documented in that package's manifest.
+        //
+        //   Stripe Web Components — its exports.swift reads
+        //     `@_exported import struct StripeCheckoutButton` (and likewise
+        //     StripeSubscriptionSelector). `import struct` requires a qualified
+        //     Module.TypeName, so these name non-existent MODULES. Both are in
+        //     fact types declared in this very directory, so no import is needed
+        //     at all.
+        //
+        // Neither directory belongs to a target, so no compiler has ever read
+        // either file: a dangling dependency and a malformed import survive
+        // indefinitely outside every target.
+        //
+        // Retained rather than deleted because that reason is the finding. See
+        // the commit that added this note for the measurement and its controls.
         .target(
             name: .stripeShared,
             dependencies: [
