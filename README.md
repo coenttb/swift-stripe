@@ -30,7 +30,12 @@ dependencies: [
 Then add to your target:
 
 ```swift
-.product(name: "Stripe", package: "swift-stripe")
+.target(
+    name: "YourTarget",
+    dependencies: [
+        .product(name: "Stripe", package: "swift-stripe")
+    ]
+)
 ```
 
 ## Quick Start
