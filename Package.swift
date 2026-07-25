@@ -221,12 +221,15 @@ let package = Package(
         //     only Checkout product is Stripe Checkout Live. Same coarse-vs-fine
         //     decomposition mismatch documented in that package's manifest.
         //
-        //   Stripe Web Components — its exports.swift reads
-        //     `@_exported import struct StripeCheckoutButton` (and likewise
-        //     StripeSubscriptionSelector). `import struct` requires a qualified
-        //     Module.TypeName, so these name non-existent MODULES. Both are in
-        //     fact types declared in this very directory, so no import is needed
-        //     at all.
+        //   Stripe Web Components — REPAIRED, and a different defect class from
+        //     the above: not a missing dependency but malformed syntax. Its
+        //     exports.swift held only `@_exported import struct
+        //     StripeCheckoutButton` and the same for StripeSubscriptionSelector.
+        //     `import struct` requires a qualified Module.TypeName, so those
+        //     named non-existent MODULES — while both are types declared in this
+        //     very directory, needing no import at all. The file was removed;
+        //     its two lines were its entire content. The directory is still
+        //     unreferenced, but its source is now well-formed.
         //
         // Neither directory belongs to a target, so no compiler has ever read
         // either file: a dangling dependency and a malformed import survive
