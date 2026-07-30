@@ -4,13 +4,6 @@
 import Stripe_Events_Types
 import Stripe_Types_Shared
 
-//import Stripe_Types_Models
-//import Stripe_Terminal_Live
-//import Stripe_Billing_Live
-//import Stripe_Payment_Methods_Live
-//import Stripe_Products_Live
-//import Stripe_Fraud_Live
-
 extension Stripe.Events.Event {
     /// A helper enum that combines event type with typed data for ergonomic pattern matching
     /// Nested enums are marked as indirect to allocate large Stripe objects on the heap
@@ -840,25 +833,29 @@ extension Stripe.Events.Event.Typed {
 
         // Checkout Session events
         case .checkoutSessionAsyncPaymentFailed:
-            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data)
+            {
                 self = .checkoutSession(.asyncPaymentFailed(checkoutSession))
                 return
             }
 
         case .checkoutSessionAsyncPaymentSucceeded:
-            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data)
+            {
                 self = .checkoutSession(.asyncPaymentSucceeded(checkoutSession))
                 return
             }
 
         case .checkoutSessionCompleted:
-            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data)
+            {
                 self = .checkoutSession(.completed(checkoutSession))
                 return
             }
 
         case .checkoutSessionExpired:
-            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data) {
+            if let checkoutSession = Stripe.Events.Event.Object.cases.checkoutSession.extract(data)
+            {
                 self = .checkoutSession(.expired(checkoutSession))
                 return
             }
@@ -1078,7 +1075,9 @@ extension Stripe.Events.Event.Typed {
             }
 
         case .applicationFeeRefundUpdated:
-            if let applicationFeeRefund = Stripe.Events.Event.Object.cases.applicationFeeRefund.extract(data) {
+            if let applicationFeeRefund = Stripe.Events.Event.Object.cases.applicationFeeRefund
+                .extract(data)
+            {
                 self = .applicationFee(.refundUpdated(applicationFeeRefund))
                 return
             }
@@ -1104,7 +1103,9 @@ extension Stripe.Events.Event.Typed {
             }
 
         case .billingPortalSessionCreated:
-            if let billingPortalSession = Stripe.Events.Event.Object.cases.billingPortalSession.extract(data) {
+            if let billingPortalSession = Stripe.Events.Event.Object.cases.billingPortalSession
+                .extract(data)
+            {
                 self = .billingPortal(.sessionCreated(billingPortalSession))
                 return
             }
@@ -1178,37 +1179,49 @@ extension Stripe.Events.Event.Typed {
 
         // Identity Verification events
         case .identityVerificationSessionCanceled:
-            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession
+                .extract(data)
+            {
                 self = .identity(.verificationSessionCanceled(verificationSession))
                 return
             }
 
         case .identityVerificationSessionCreated:
-            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession
+                .extract(data)
+            {
                 self = .identity(.verificationSessionCreated(verificationSession))
                 return
             }
 
         case .identityVerificationSessionProcessing:
-            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession
+                .extract(data)
+            {
                 self = .identity(.verificationSessionProcessing(verificationSession))
                 return
             }
 
         case .identityVerificationSessionRedacted:
-            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession
+                .extract(data)
+            {
                 self = .identity(.verificationSessionRedacted(verificationSession))
                 return
             }
 
         case .identityVerificationSessionRequiresInput:
-            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession
+                .extract(data)
+            {
                 self = .identity(.verificationSessionRequiresInput(verificationSession))
                 return
             }
 
         case .identityVerificationSessionVerified:
-            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession.extract(data) {
+            if let verificationSession = Stripe.Events.Event.Object.cases.verificationSession
+                .extract(data)
+            {
                 self = .identity(.verificationSessionVerified(verificationSession))
                 return
             }
@@ -1228,19 +1241,25 @@ extension Stripe.Events.Event.Typed {
 
         // Issuing events
         case .issuingAuthorizationCreated:
-            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization.extract(data) {
+            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization
+                .extract(data)
+            {
                 self = .issuing(.authorizationCreated(issuingAuthorization))
                 return
             }
 
         case .issuingAuthorizationRequest:
-            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization.extract(data) {
+            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization
+                .extract(data)
+            {
                 self = .issuing(.authorizationRequest(issuingAuthorization))
                 return
             }
 
         case .issuingAuthorizationUpdated:
-            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization.extract(data) {
+            if let issuingAuthorization = Stripe.Events.Event.Object.cases.issuingAuthorization
+                .extract(data)
+            {
                 self = .issuing(.authorizationUpdated(issuingAuthorization))
                 return
             }
@@ -1258,13 +1277,17 @@ extension Stripe.Events.Event.Typed {
             }
 
         case .issuingCardholderCreated:
-            if let issuingCardHolder = Stripe.Events.Event.Object.cases.issuingCardHolder.extract(data) {
+            if let issuingCardHolder = Stripe.Events.Event.Object.cases.issuingCardHolder.extract(
+                data
+            ) {
                 self = .issuing(.cardholderCreated(issuingCardHolder))
                 return
             }
 
         case .issuingCardholderUpdated:
-            if let issuingCardHolder = Stripe.Events.Event.Object.cases.issuingCardHolder.extract(data) {
+            if let issuingCardHolder = Stripe.Events.Event.Object.cases.issuingCardHolder.extract(
+                data
+            ) {
                 self = .issuing(.cardholderUpdated(issuingCardHolder))
                 return
             }
@@ -1300,13 +1323,17 @@ extension Stripe.Events.Event.Typed {
             }
 
         case .issuingTransactionCreated:
-            if let issuingTransaction = Stripe.Events.Event.Object.cases.issuingTransaction.extract(data) {
+            if let issuingTransaction = Stripe.Events.Event.Object.cases.issuingTransaction.extract(
+                data
+            ) {
                 self = .issuing(.transactionCreated(issuingTransaction))
                 return
             }
 
         case .issuingTransactionUpdated:
-            if let issuingTransaction = Stripe.Events.Event.Object.cases.issuingTransaction.extract(data) {
+            if let issuingTransaction = Stripe.Events.Event.Object.cases.issuingTransaction.extract(
+                data
+            ) {
                 self = .issuing(.transactionUpdated(issuingTransaction))
                 return
             }
@@ -1389,13 +1416,17 @@ extension Stripe.Events.Event.Typed {
 
         // Radar events
         case .radarEarlyFraudWarningCreated:
-            if let earlyFraudWarning = Stripe.Events.Event.Object.cases.earlyFraudWarning.extract(data) {
+            if let earlyFraudWarning = Stripe.Events.Event.Object.cases.earlyFraudWarning.extract(
+                data
+            ) {
                 self = .radar(.earlyFraudWarningCreated(earlyFraudWarning))
                 return
             }
 
         case .radarEarlyFraudWarningUpdated:
-            if let earlyFraudWarning = Stripe.Events.Event.Object.cases.earlyFraudWarning.extract(data) {
+            if let earlyFraudWarning = Stripe.Events.Event.Object.cases.earlyFraudWarning.extract(
+                data
+            ) {
                 self = .radar(.earlyFraudWarningUpdated(earlyFraudWarning))
                 return
             }
@@ -1434,7 +1465,9 @@ extension Stripe.Events.Event.Typed {
 
         //            // Sigma events
         case .sigmaScheduledQueryRunCreated:
-            if let scheduledQueryRun = Stripe.Events.Event.Object.cases.scheduledQueryRun.extract(data) {
+            if let scheduledQueryRun = Stripe.Events.Event.Object.cases.scheduledQueryRun.extract(
+                data
+            ) {
                 self = .sigma(.scheduledQueryRunCreated(scheduledQueryRun))
                 return
             }
@@ -1451,43 +1484,57 @@ extension Stripe.Events.Event.Typed {
 
         // Subscription Schedule events
         case .subscriptionScheduleAborted:
-            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule
+                .extract(data)
+            {
                 self = .subscriptionSchedule(.aborted(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleCanceled:
-            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule
+                .extract(data)
+            {
                 self = .subscriptionSchedule(.canceled(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleCompleted:
-            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule
+                .extract(data)
+            {
                 self = .subscriptionSchedule(.completed(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleCreated:
-            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule
+                .extract(data)
+            {
                 self = .subscriptionSchedule(.created(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleExpiring:
-            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule
+                .extract(data)
+            {
                 self = .subscriptionSchedule(.expiring(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleReleased:
-            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule
+                .extract(data)
+            {
                 self = .subscriptionSchedule(.released(subscriptionSchedule))
                 return
             }
 
         case .subscriptionScheduleUpdated:
-            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule.extract(data) {
+            if let subscriptionSchedule = Stripe.Events.Event.Object.cases.subscriptionSchedule
+                .extract(data)
+            {
                 self = .subscriptionSchedule(.updated(subscriptionSchedule))
                 return
             }

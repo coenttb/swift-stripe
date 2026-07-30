@@ -40,7 +40,8 @@ let package = Package(
         .testTarget(
             name: "Stripe Tests",
             dependencies: [
-                .stripe
+                .stripe,
+                .stripeTypesShared
             ]
         )
     ],

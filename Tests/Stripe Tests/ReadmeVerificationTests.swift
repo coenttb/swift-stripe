@@ -1,3 +1,4 @@
+import Stripe_Types_Shared
 import Testing
 
 @testable import Stripe
@@ -8,8 +9,10 @@ struct Test {
     // README mentions Stripe as main product
     @Test
     func `Example from README: Stripe module exists`() {
-        // Verify the Stripe module compiles and types are accessible
-        let stripeType = Stripe.self
+        // Verify the Stripe module compiles and types are accessible.
+        // `Stripe` here is qualified by its defining module (`Stripe_Types_Shared`)
+        // to disambiguate the type from the `Stripe` module imported above.
+        let stripeType = Stripe_Types_Shared.Stripe.self
 
         #expect(String(describing: stripeType) == "Stripe")
     }
