@@ -5,7 +5,6 @@
 //  Reusable webhook helper functions for Stripe event processing
 //
 
-import Foundation
 import Stripe_Events_Types
 import Stripe_Types_Shared
 
@@ -34,14 +33,13 @@ extension Stripe.Events.Event.Typed {
         }
     }
 
-    /// Generates a unique event ID for idempotency tracking
-    public var eventId: Stripe.Events.Event.ID {
+    /// The Stripe event ID for idempotency tracking, when the payload carries one.
+    public var eventId: Stripe.Events.Event.ID? {
         switch self {
         case .unhandled(let event):
             return event.id
         default:
-            // For typed events, generate a UUID-based ID
-            return "evt_\(UUID().uuidString)"
+            return nil
         }
     }
 

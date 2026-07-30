@@ -1,7 +1,6 @@
 // MARK: - Typed Event Helper
 // Combines Stripe event types with their associated typed data for ergonomic pattern matching
 
-import Foundation
 import Stripe_Events_Types
 import Stripe_Types_Shared
 
