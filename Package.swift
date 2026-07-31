@@ -11,10 +11,10 @@ extension Target.Dependency {
 }
 
 extension Target.Dependency {
-    // Interim: swift-stripe-types#11 introduces the consolidated `Stripe Standard`
+    // Interim: swift-stripe-standard#11 introduces the consolidated `Stripe Standard`
     // product; until it lands, depend on the existing per-vocabulary `* Types` products.
-    static var stripeEventsTypes: Self { .product(name: "Stripe Events Types", package: "swift-stripe-types") }
-    static var stripeTypesShared: Self { .product(name: "Stripe Types Shared", package: "swift-stripe-types") }
+    static var stripeEventsTypes: Self { .product(name: "Stripe Events Types", package: "swift-stripe-standard") }
+    static var stripeTypesShared: Self { .product(name: "Stripe Types Shared", package: "swift-stripe-standard") }
 }
 
 let package = Package(
@@ -27,7 +27,7 @@ let package = Package(
         .library(name: .stripe, targets: [.stripe])
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-standards/swift-stripe-types.git", branch: "main")
+        .package(url: "https://github.com/swift-standards/swift-stripe-standard.git", branch: "main")
     ],
     targets: [
         .target(
