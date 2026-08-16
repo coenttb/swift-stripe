@@ -16,16 +16,22 @@ extension Stripe.Events.Event.Typed {
         switch self {
         case .checkoutSession(let event):
             return "checkout.session.\(event.eventName)"
+
         case .subscription(let event):
             return "subscription.\(event.eventName)"
+
         case .invoice(let event):
             return "invoice.\(event.eventName)"
+
         case .customer(let event):
             return "customer.\(event.eventName)"
+
         case .paymentIntent(let event):
             return "payment_intent.\(event.eventName)"
+
         case .unhandled(let event):
             return event.type?.rawValue ?? "unknown"
+
         default:
             // For other event types, return a generic format
             // This covers all the other cases without having to implement each one
@@ -38,6 +44,7 @@ extension Stripe.Events.Event.Typed {
         switch self {
         case .unhandled(let event):
             return event.id
+
         default:
             return nil
         }
@@ -48,14 +55,19 @@ extension Stripe.Events.Event.Typed {
         switch self {
         case .checkoutSession(let event):
             return event.resourceId
+
         case .subscription(let event):
             return event.resourceId
+
         case .invoice(let event):
             return event.resourceId
+
         case .customer(let event):
             return event.resourceId
+
         case .paymentIntent(let event):
             return event.resourceId
+
         default:
             return nil
         }
@@ -206,6 +218,7 @@ extension Stripe.Events.Event.Typed.CustomerEvent {
             .taxIdDeleted(let customer),
             .taxIdUpdated(let customer):
             return customer.id.rawValue
+
         case .subscriptionCreated(let subscription),
             .subscriptionDeleted(let subscription),
             .subscriptionPaused(let subscription),

@@ -1471,6 +1471,7 @@ extension Stripe.Events.Event.Typed {
                 self = .sigma(.scheduledQueryRunCreated(scheduledQueryRun))
                 return
             }
+
         //
         // Source events - Source type is not available in Event.Object, fallback to unhandled
         case .sourceCanceled,
@@ -1558,12 +1559,14 @@ extension Stripe.Events.Event.Typed {
                 self = .terminal(.readerActionFailed(reader))
                 return
             }
+
         //
         case .terminalReaderActionSucceeded:
             if let reader = Stripe.Events.Event.Object.cases.reader.extract(data) {
                 self = .terminal(.readerActionSucceeded(reader))
                 return
             }
+
         //
         //            // Test Helpers events
         case .testHelpersTestClockAdvancing:
