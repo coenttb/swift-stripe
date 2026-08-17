@@ -20,8 +20,8 @@ extension Target.Dependency {
 let package = Package(
     name: "swift-stripe",
     platforms: [
-        .macOS(.v26),
-        .iOS(.v26)
+        .macOS("27"),
+        .iOS("27")
     ],
     products: [
         .library(name: .stripe, targets: [.stripe])
