@@ -1,6 +1,6 @@
 # swift-stripe
 
-[![CI](https://github.com/swift-foundations/swift-stripe/workflows/CI/badge.svg)](https://github.com/swift-foundations/swift-stripe/actions/workflows/ci.yml)
+[![CI](https://github.com/swift-compositions/swift-stripe/workflows/CI/badge.svg)](https://github.com/swift-compositions/swift-stripe/actions/workflows/ci.yml)
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
 A complete, production-ready Stripe API client for Swift server applications.
@@ -23,7 +23,7 @@ Add to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-foundations/swift-stripe", from: "0.2.1")
+    .package(url: "https://github.com/swift-compositions/swift-stripe", from: "0.2.1")
 ]
 ```
 
@@ -262,7 +262,7 @@ If migrating from vapor-community/stripe-kit:
 - [swift-authenticating](https://github.com/coenttb/swift-authenticating): A Swift package for type-safe HTTP authentication with URL routing integration.
 - [swift-html](https://github.com/coenttb/swift-html): The Swift library for domain-accurate and type-safe HTML & CSS.
 - [swift-server-foundation](https://github.com/coenttb/swift-server-foundation): A Swift package with tools to simplify server development.
-- [swift-stripe-http](https://github.com/swift-foundations/swift-stripe-http): A Swift package with live implementations for the Stripe API.
+- [swift-stripe-http](https://github.com/swift-compositions/swift-stripe-http): A Swift package with live implementations for the Stripe API.
 - [swift-stripe-standard](https://github.com/swift-standards/swift-stripe-standard): A Swift package with foundational types for Stripe.
 
 ### Third-Party Dependencies
@@ -284,4 +284,4 @@ For commercial licensing options, please contact the maintainer.
 
 ## Support
 
-For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/swift-foundations/swift-stripe).
+For issues, questions, or contributions, please visit the [GitHub repository](https://github.com/swift-compositions/swift-stripe).

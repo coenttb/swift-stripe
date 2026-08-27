@@ -1,7 +1,7 @@
 # .github/metadata.yaml
 description: "A production-ready Stripe API client for Swift server applications."
 topics:
-  - foundations
+  - compositions
   - stripe
   - api-client
 homepage: "https://swift-institute.org"
