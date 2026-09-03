@@ -2,21 +2,6 @@
 
 import PackageDescription
 
-extension String {
-    static let stripe: Self = "Stripe"
-}
-
-extension Target.Dependency {
-    static var stripe: Self { .target(name: .stripe) }
-}
-
-extension Target.Dependency {
-    // Interim: swift-stripe-standard#11 introduces the consolidated `Stripe Standard`
-    // product; until it lands, depend on the existing per-vocabulary `* Types` products.
-    static var stripeEventsTypes: Self { .product(name: "Stripe Events Types", package: "swift-stripe-standard") }
-    static var stripeTypesShared: Self { .product(name: "Stripe Types Shared", package: "swift-stripe-standard") }
-}
-
 let package = Package(
     name: "swift-stripe",
     platforms: [
@@ -24,24 +9,24 @@ let package = Package(
         .iOS(.v26)
     ],
     products: [
-        .library(name: .stripe, targets: [.stripe])
+        .library(name: "Stripe", targets: ["Stripe"])
     ],
     dependencies: [
         .package(url: "https://github.com/swift-standards/swift-stripe-standard.git", branch: "main")
     ],
     targets: [
         .target(
-            name: .stripe,
+            name: "Stripe",
             dependencies: [
-                .stripeEventsTypes,
-                .stripeTypesShared
+                .product(name: "Stripe Events Types", package: "swift-stripe-standard"),
+                .product(name: "Stripe Types Shared", package: "swift-stripe-standard")
             ]
         ),
         .testTarget(
             name: "Stripe Tests",
             dependencies: [
-                .stripe,
-                .stripeTypesShared
+                .target(name: "Stripe"),
+                .product(name: "Stripe Types Shared", package: "swift-stripe-standard")
             ]
         )
     ],
