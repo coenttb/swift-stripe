@@ -9,7 +9,7 @@ let package = Package(
         .iOS(.v27),
         .tvOS(.v27),
         .watchOS(.v27),
-        .visionOS(.v27)
+        .visionOS(.v27),
     ],
     products: [
         .library(name: "Stripe", targets: ["Stripe"])
@@ -22,16 +22,16 @@ let package = Package(
             name: "Stripe",
             dependencies: [
                 .product(name: "Stripe Events Types", package: "swift-stripe-standard"),
-                .product(name: "Stripe Types Shared", package: "swift-stripe-standard")
+                .product(name: "Stripe Types Shared", package: "swift-stripe-standard"),
             ]
         ),
         .testTarget(
             name: "Stripe Tests",
             dependencies: [
                 .target(name: "Stripe"),
-                .product(name: "Stripe Types Shared", package: "swift-stripe-standard")
+                .product(name: "Stripe Types Shared", package: "swift-stripe-standard"),
             ]
-        )
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
