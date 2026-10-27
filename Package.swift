@@ -15,7 +15,7 @@ let package = Package(
         .library(name: "Stripe", targets: ["Stripe"])
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-standards/swift-stripe-standard.git", branch: "main")
+        .package(url: "https://github.com/coenttb/swift-stripe-standard.git", branch: "main")
     ],
     targets: [
         .target(
